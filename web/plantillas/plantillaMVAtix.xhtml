@@ -1,0 +1,113 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+
+    <body>
+
+        <ui:composition template="./plantillaAtix.xhtml">
+
+            <ui:define name="top">
+                <div id="imgHeader" align="center">
+                    <h4 align="center">BIENVENIDO A TU CATALOGO ATIX STORE UNICO PASTO (LOCAL 2)</h4>
+                    <img src="../resources/imagenes/atixStore.jpg" />
+                </div>
+                
+            </ui:define>
+
+            <ui:define name="left">
+                <h:form>
+                    <p:growl autoUpdate="true"/>
+                    <p:panelMenu style="width:150px">
+                        <p:submenu label="CONTENIDO" icon="ui-icon-heart">
+                            <p:menuitem value="Home" outcome="/plantillas/plantillaIndexAtix.xhtml" icon="ui-icon-home" />
+                            <p:menuitem value="Mision - Vision" outcome="/plantillas/plantillaMVAtix.xhtml" icon="ui-icon-document" />
+                            <p:menuitem value="Download" url="http://www.primefaces.org/downloads" icon="ui-icon-arrowthick-1-s" />
+                            <p:menuitem value="Support" url="http://www.primefaces.org/support" icon="ui-icon-wrench" />
+                        </p:submenu>
+                    </p:panelMenu>
+                </h:form>
+            </ui:define>
+
+            <ui:define name="right">
+                <h:form>
+                    <p:growl autoUpdate="true"/>
+                    <p:panelMenu style="width:150px">
+                        <p:submenu label="REDES SOCIALES" icon="ui-icon-heart">
+                            <p:menuitem value="Facebook" url="https://www.facebook.com/pages/Atix-Store-Unico-Pasto/1105389496142525" icon="ui-icon-home" />
+                            <p:menuitem value="Twitter" url="https://twitter.com/AtixStorePasto?lang=es" icon="ui-icon-home" />
+                        </p:submenu>
+                    </p:panelMenu>
+                </h:form>
+            </ui:define>
+
+            <ui:define name="content">
+                
+                <h:form id="form">
+
+                    <p:growl id="msgs" showDetail="true" />
+                    <h3 style="margin-top:0">Mision Vision</h3>
+                    <p:tabView>
+                        <p:tab title="Mision">
+                            <h:panelGrid columns="2" cellpadding="10">
+                                <h:graphicImage library="imagenes" name="mision.jpg"/>
+                                <h:outputText    value="MISION
+                                                 La empresa DISINDE S.A.S dedica sus actividades a la 
+                                                 comercialización de calzado y ropa deportiva y enfoca 
+                                                 sus directrices hacia la satisfacción de sus clientes, 
+                                                 ofreciendo productos de alta calidad, servicio calificado, 
+                                                 los mejores precios, eficiencia en los tiempos de entrega, 
+                                                 también contamos con la presencia de la marca CROCS y US POLO ASSN 
+                                                 (Franquicias) en diferentes ciudades del país.
+
+                                                 Para ello cuenta con la infraestructura, y el capital humano 
+                                                 capacitado, comprometido con los procesos necesarios para alcanzar 
+                                                 los objetivos institucionales y dispuestos a contribuir con el desarrollo 
+                                                 y mejoramiento de la región y el país." />
+                            </h:panelGrid>
+                        </p:tab>
+                        <p:tab title="Vision">
+                            <h:panelGrid columns="2" cellpadding="10">
+                                <p:graphicImage library="imagenes" name="vision.jpg" />
+                                <h:outputText value="VISION
+                                              Ser una empresa reconocida nacional e internacionalmente, 
+                                              con autonomía administrativa, con alianzas estratégicas en el 
+                                              ámbito nacional e internacional, comprometida con el servicio 
+                                              al cliente tanto interno como externo, a la formación Integral 
+                                              de su recurso humano y al desarrollo social y económico de las 
+                                              diferentes regiones del País.
+
+                                              Nos vemos con productos desarrollados acordes a las necesidades 
+                                              de los clientes, convirtiéndonos en una importante opción en el 
+                                              mercado por diversidad, calidad, e innovación con capacidad de 
+                                              respuesta ante mercados depresivos cumpliendo los principios de rentabilidad.  
+                                              Consolidando nuevas franquicias alrededor de 2 a 5 años esperamos contar con 
+                                              la apertura de nuevos puntos de venta, con estructura propia y excelente 
+                                              servicio para completar 50 Almacenes y tener una estadística del 70% 
+                                              Franquicia y 30% Multimarca." />
+                            </h:panelGrid>
+                        </p:tab>
+                    </p:tabView>
+
+
+                </h:form>
+
+            </ui:define>
+
+            <ui:define name="bottom">
+                <h4 align="center">   Autores: Jhon Jairo Mera Burbano - Henry Alejandro Ordoñez Cordoba <br/>
+                    Todos los derechos reservados<br/>
+                    Imágenes tomadas de Google<br/>
+                    Contactos: jhmera@umariana.edu.co  -  hordonez@umariana.edu.co <br/>
+                    2015<br/>
+                </h4>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
