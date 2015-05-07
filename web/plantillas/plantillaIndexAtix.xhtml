@@ -43,8 +43,8 @@
             <ui:define name="content">
                 
                 <p:imageSwitch effect="turnDown">
-                    <ui:repeat value="#{ImagesView.images}" var="image">
-                        <p:graphicImage name="/resources/imagenes/#{image}" />
+                    <ui:repeat value="#{imagesView.images}" var="image">
+                        <p:graphicImage name="imagenes/#{image}" />
                     </ui:repeat>
                 </p:imageSwitch>          
             </ui:define>

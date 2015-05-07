@@ -9,11 +9,15 @@ package primeFacesJava;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 
 /**
  *
  * @author ACER
  */
+@ManagedBean
+@ViewScoped
 public class ImagesView {
     private List<String> images;
      
