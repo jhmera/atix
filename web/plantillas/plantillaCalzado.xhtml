@@ -2,8 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
 
     <body>
 
@@ -35,32 +35,15 @@
             </ui:define>
 
             <ui:define name="right">
-                <h:form>
-                    <p:growl autoUpdate="true"/>
-                    <p:panelMenu style="width:150px">
-                        <p:submenu label="REDES SOCIALES" icon="ui-icon-heart">
-                            <p:menuitem value="Facebook" url="https://www.facebook.com/pages/Atix-Store-Unico-Pasto/1105389496142525" icon="ui-icon-home" />
-                            <p:menuitem value="Twitter" url="https://twitter.com/AtixStorePasto?lang=es" icon="ui-icon-home" />
-                        </p:submenu>
-                    </p:panelMenu>
-                </h:form>
+                right
             </ui:define>
 
             <ui:define name="content">
-                <p:imageSwitch effect="turnDown">
-                    <ui:repeat value="#{imagesView.images}" var="image">
-                        <p:graphicImage name="imagenes/#{image}" />
-                    </ui:repeat>
-                </p:imageSwitch> 
+                content
             </ui:define>
 
             <ui:define name="bottom">
-                <h4 align="center">   Autores: Jhon Jairo Mera Burbano - Henry Alejandro Ordoñez Cordoba <br/>
-                    Todos los derechos reservados<br/>
-                    Imágenes tomadas de Google<br/>
-                    Contactos: jhmera@umariana.edu.co  -  hordonez@umariana.edu.co <br/>
-                    2015<br/>
-                </h4>
+                bottom
             </ui:define>
 
         </ui:composition>
