@@ -24,7 +24,7 @@ public class ImagesView {
     @PostConstruct
     public void init() {
         images = new ArrayList<String>();
-        for (int i = 1; i <= 12; i++) {
+        for (int i = 1; i <= 3; i++) {
             images.add("atix" + i + ".jpg");
         }
     }
