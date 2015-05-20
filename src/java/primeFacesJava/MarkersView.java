@@ -26,14 +26,10 @@ public class MarkersView implements Serializable {
     @PostConstruct
     public void init() {
         simpleModel = new DefaultMapModel();
-          
         //Shared coordinates
-        LatLng coord1 = new LatLng(1.205999,-77.260836);
-        
-          
+        LatLng coord1 = new LatLng(1.205999,-77.260836);          
         //Basic marker
         simpleModel.addOverlay(new Marker(coord1, "Konyaalti"));
-        
     }
   
     public MapModel getSimpleModel() {

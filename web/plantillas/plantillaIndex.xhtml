@@ -47,9 +47,9 @@
             </ui:define>
 
             <ui:define name="content">
-                <p:imageSwitch effect="turnDown">
+                <p:imageSwitch effect="turnDown" >
                     <ui:repeat value="#{imagesView.images}" var="image">
-                        <p:graphicImage name="imagenes/#{image}" />
+                        <p:graphicImage name="imagenes/#{image}" width="100%" height="100%"/>
                     </ui:repeat>
                 </p:imageSwitch> 
             </ui:define>
