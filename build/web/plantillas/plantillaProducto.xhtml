@@ -1,0 +1,94 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./plantillaAtix.xhtml">
+
+            <ui:define name="top">
+                <div id="imgHeader" align="center">
+                    <h4 align="center">BIENVENIDO A TU CATALOGO ATIX STORE UNICO PASTO (LOCAL 2)</h4>
+                    <img src="../resources/imagenes/atixStore.jpg" />
+                    <h:form>
+                        <h3 style="margin-top:0"></h3>
+                        <p:clock />
+                    </h:form>
+                </div>
+            </ui:define>
+
+            <ui:define name="left">
+                <h:form>
+                    <p:growl autoUpdate="true"/>
+                    <p:panelMenu style="width:150px">
+                        <p:submenu label="CONTENIDO" icon="ui-icon-heart">
+                            <p:menuitem value="Home" outcome="/plantillas/plantillaIndex.xhtml" icon="ui-icon-home" />
+                            <p:menuitem value="Mision - Vision" outcome="/plantillas/plantillaMVAtix.xhtml" icon="ui-icon-document" />
+                            <p:menuitem value="Contactenos" outcome="/plantillas/plantillaContactenos.xhtml" icon="ui-icon-arrowthick-1-s" />
+                            <p:menuitem value="Producto" outcome="/plantillas/plantillaProducto.xhtml" icon="ui-icon-wrench" />
+                        </p:submenu>
+                    </p:panelMenu>
+                </h:form>
+            </ui:define>
+
+            <ui:define name="right">
+                right
+            </ui:define>
+
+            <ui:define name="content">
+                <h:form>
+                    <p:panel id="panel" header="PRODUCTO NUEVO">
+
+                        <p:messages id="msgs" />
+
+                        <h:panelGrid columns="3" cellpadding="5">
+                            
+                            <p:outputLabel for="id_producto" value="id producto:" />
+                            <p:inputText id="id_producto" value="#{productoView.id_Producto}" required="true" label="id_producto">
+                                <f:validateLength minimum="1" />
+                            </p:inputText>
+                            <p:message for="id_producto" display="icon" />
+                            
+                            <p:outputLabel for="nombre" value="Nombre:" />
+                            <p:inputText id="nombre" value="#{productoView.nombre}" required="true" label="nombre">
+                                <f:validateLength minimum="2" />
+                            </p:inputText>
+                            <p:message for="nombre" display="icon" />
+                            
+                            <p:outputLabel for="costo" value="costo:" />
+                            <p:inputText id="costo" value="#{productoView.costo}" required="true" label="costo">
+                                <f:validateLength minimum="2" />
+                            </p:inputText>
+                            <p:message for="costo" display="icon" />
+                            
+                            <p:outputLabel for="cantidad" value="cantidad:" />
+                            <p:inputText id="cantidad" value="#{productoView.cantidad}" required="true" label="cantidad">
+                                <f:validateLength minimum="1" />
+                            </p:inputText>
+                            <p:message for="cantidad" display="icon" />
+                            
+                            <p:outputLabel for="id_marca" value="id_marca:" />
+                            <p:inputText id="id_marca" value="#{productoView.id_marca}" required="true" label="id_marca">
+                                <f:validateLength minimum="1" />
+                            </p:inputText>
+                            <p:message for="id_marca" display="icon" />
+            
+                        </h:panelGrid>
+
+                        <p:commandButton value="Guardar Producto" update="panel" actionListener="#{productoView.save()}" icon="ui-icon-check" />
+                    </p:panel>
+                </h:form>
+            </ui:define>
+
+            <ui:define name="bottom">
+                bottom
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
