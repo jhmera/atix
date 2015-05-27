@@ -30,13 +30,22 @@
                             <p:menuitem value="Mision - Vision" outcome="/plantillas/plantillaMVAtix.xhtml" icon="ui-icon-document" />
                             <p:menuitem value="Contactenos" outcome="/plantillas/plantillaContactenos.xhtml" icon="ui-icon-arrowthick-1-s" />
                             <p:menuitem value="Producto" outcome="/plantillas/plantillaProducto.xhtml" icon="ui-icon-wrench" />
+                            <p:menuitem value="Venta" outcome="/plantillas/plantillaVenta.xhtml" icon="ui-icon-wrench" />
                         </p:submenu>
                     </p:panelMenu>
                 </h:form>
             </ui:define>
 
             <ui:define name="right">
-                right
+                <h:form>
+                    <p:growl autoUpdate="true"/>
+                    <p:panelMenu style="width:150px">
+                        <p:submenu label="REDES SOCIALES" icon="ui-icon-heart">
+                            <p:menuitem value="Facebook" url="https://www.facebook.com/pages/Atix-Store-Unico-Pasto/1105389496142525" icon="ui-icon-home" />
+                            <p:menuitem value="Twitter" url="https://twitter.com/AtixStorePasto?lang=es" icon="ui-icon-home" />
+                        </p:submenu>
+                    </p:panelMenu>
+                </h:form>
             </ui:define>
 
             <ui:define name="content">
