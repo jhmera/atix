@@ -12,8 +12,9 @@ and open the template in the editor.
 <h:head>
 </h:head>
 <h:body style="text-align:center">
+    <p:messages for="form1" autoUpdate="true" showDetail="true" showSummary="true"></p:messages>
   <p:growl id="mensajes" showDetail="true" life="2000" />
-  <h:form>
+  <h:form id="form1">
     <p:panel header="Login" style="width:300px">
       <h:panelGrid columns="2" cellpadding="5">
         <h:outputLabel for="username" value="Usuario:" />
@@ -24,7 +25,7 @@ and open the template in the editor.
            label="password" />
         <f:facet name="footer">
           <p:commandButton id="loginButton" value="Login"
-             actionListener="#{loginBean.login}" update=":mensajes" />
+                           actionListener="#{loginBean.login}" update=":mensajes" />
         </f:facet>
       </h:panelGrid>
     </p:panel>

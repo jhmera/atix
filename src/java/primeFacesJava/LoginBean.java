@@ -7,11 +7,13 @@ package primeFacesJava;
 
 import java.io.Serializable;
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.servlet.http.HttpSession;
 import org.primefaces.context.RequestContext;
 
+@ManagedBean
 public class LoginBean implements Serializable {
   private static final long serialVersionUID = -2152389656664659476L;
   private String nombre;
@@ -54,13 +56,7 @@ public class LoginBean implements Serializable {
     FacesContext.getCurrentInstance().addMessage(null, msg);
     context.addCallbackParam("estaLogeado", logeado);
     if (logeado)
-      context.addCallbackParam("view", "gauge.xhtml");
+      context.addCallbackParam("view", "plantillas/plantillaIndex.xhtml");
   }
 
-  public void logout() {
-    HttpSession session = (HttpSession) FacesContext.getCurrentInstance() 
-                                        .getExternalContext().getSession(false);
-    session.invalidate();
-    logeado = false;
-  }
 }

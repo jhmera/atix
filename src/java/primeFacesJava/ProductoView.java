@@ -22,6 +22,7 @@ public class ProductoView {
     private int costo;
     private int cantidad;
     private int id_marca;
+    private int number4; 
  
    public int getId_Producto() {
         return id_producto;
@@ -66,6 +67,14 @@ public class ProductoView {
     public void save() {
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage("tienes" +cantidad + " de " + nombre + " con valor $"+ costo+" y marca "+ id_marca));
+    }
+    
+     public int getNumber4() {
+        return number4;
+    }
+ 
+    public void setNumber4(int number4) {
+        this.number4 = number4;
     }
     
 }

@@ -74,10 +74,13 @@
                             </p:inputText>
                             <p:message for="costo" display="icon" />
                             
+                            
+                            
                             <p:outputLabel for="cantidad" value="cantidad:" />
-                            <p:inputText id="cantidad" value="#{productoView.cantidad}" required="true" label="cantidad">
-                                <f:validateLength minimum="1" />
-                            </p:inputText>
+                            <p:spinner id="cantidad" value="#{productoView.number4}" prefix="$" required="true" label="cantidad" min="0" >
+                                    <f:validateLength minimum="3" />
+                            </p:spinner>
+ 
                             <p:message for="cantidad" display="icon" />
                             
                             <p:outputLabel for="id_marca" value="id_marca:" />

@@ -52,25 +52,30 @@
                 <h:form>
     <p:growl id="msgs" showDetail="true" />
  
-    <p:panel header="Select a Location" style="margin-bottom:10px;">
+    <p:panel header="Elegir Producto" style="margin-bottom:10px;">
         <h:panelGrid columns="2" cellpadding="5">
-            <p:outputLabel for="country" value="Country: " />
-            <p:selectOneMenu id="country" value="#{dropdownView.country}" style="width:150px">
-                <p:ajax listener="#{dropdownView.onCountryChange}" update="city" />
-                <f:selectItem itemLabel="Select Country" itemValue="" noSelectionOption="true" />
-                <f:selectItems value="#{dropdownView.countries}" />
+            <p:outputLabel for="tipo" value="tipo: " />
+            <p:selectOneMenu id="tipo" value="#{dropdownView.tipo}" style="width:150px">
+                <p:ajax listener="#{dropdownView.onTipoChange()}" update="marca" />
+                <f:selectItem itemLabel="Selecione tipo" itemValue="" noSelectionOption="true" />
+                <f:selectItems value="#{dropdownView.tipos}" />
             </p:selectOneMenu>
  
-            <p:outputLabel for="city" value="City: " />
-            <p:selectOneMenu id="city" value="#{dropdownView.city}" style="width:150px">
-                <f:selectItem itemLabel="Select City" itemValue="" noSelectionOption="true" />
-                <f:selectItems value="#{dropdownView.cities}" />
+            <p:outputLabel for="marca" value="marca: " />
+            <p:selectOneMenu id="marca" value="#{dropdownView.marca}" style="width:150px">
+                <f:selectItem itemLabel="Selecione marca" itemValue="" noSelectionOption="true" />
+                <f:selectItems value="#{dropdownView.marcas}" />
             </p:selectOneMenu>
+            
+            <p:outputLabel for="cantidad" value="cantidad:" />
+            <p:spinner id="cantidad" value="#{dropdownView.number4}" prefix="$" required="true" label="cantidad" min="0" readonly="true" >
+                                    <f:validateLength minimum="3" />
+                            </p:spinner>
         </h:panelGrid>
  
         <p:separator />
  
-        <p:commandButton value="Submit" update="msgs" actionListener="#{dropdownView.displayLocation}" icon="ui-icon-check" />
+        <p:commandButton value="Comprar" update="msgs" actionListener="#{dropdownView.displayLocation}" icon="ui-icon-check" />
     </p:panel>
 </h:form>
                 

@@ -23,79 +23,88 @@ import javax.faces.context.FacesContext;
 public class DropdownView implements Serializable {
      
     private Map<String,Map<String,String>> data = new HashMap<String, Map<String,String>>();
-    private String country; 
-    private String city;  
-    private Map<String,String> countries;
-    private Map<String,String> cities;
+    
+    private String tipo;
+    private String marca;
+    private int number4; 
+    private Map<String,String> tipos;
+    private Map<String,String> marcas;
      
     @PostConstruct
     public void init() {
-        countries  = new HashMap<String, String>();
-        countries.put("USA", "USA");
-        countries.put("Germany", "Germany");
-        countries.put("Brazil", "Brazil");
+        tipos  = new HashMap<String, String>();
+        tipos.put("Zapatos", "Zapatos");
+        tipos.put("Ropa", "Ropa");
+        tipos.put("Accesorios", "Accesorios");
          
         Map<String,String> map = new HashMap<String, String>();
-        map.put("New York", "New York");
-        map.put("San Francisco", "San Francisco");
-        map.put("Denver", "Denver");
-        data.put("USA", map);
+        map.put("Adidas", "Adidas");
+        map.put("Nike", "Nike");
+        map.put("Polo", "Polo");
+        data.put("Zapatos", map);
          
         map = new HashMap<String, String>();
-        map.put("Berlin", "Berlin");
-        map.put("Munich", "Munich");
-        map.put("Frankfurt", "Frankfurt");
-        data.put("Germany", map);
+        map.put("Polo", "Polo");
+        map.put("Atix", "Atix");
+        data.put("Ropa", map);
          
         map = new HashMap<String, String>();
-        map.put("Sao Paolo", "Sao Paolo");
-        map.put("Rio de Janerio", "Rio de Janerio");
-        map.put("Salvador", "Salvador");
-        data.put("Brazil", map);
+        map.put("Balon", "Balon");
+        map.put("Canilleras ", "Canilleras");
+        map.put("Guantes", "Guantes");
+        data.put("Accesorios", map);
     }
  
     public Map<String, Map<String, String>> getData() {
         return data;
     }
  
-    public String getCountry() {
-        return country;
+    public String getTipo() {
+        return tipo;
     }
  
-    public void setCountry(String country) {
-        this.country = country;
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
  
-    public String getCity() {
-        return city;
+    public String getMarca() {
+        return marca;
     }
  
-    public void setCity(String city) {
-        this.city = city;
+    public void setMarca(String marca) {
+        this.marca = marca;
     }
  
-    public Map<String, String> getCountries() {
-        return countries;
+    public Map<String, String> getTipos() {
+        return tipos;
     }
  
-    public Map<String, String> getCities() {
-        return cities;
+    public Map<String, String> getMarcas() {
+        return marcas;
     }
  
-    public void onCountryChange() {
-        if(country !=null && !country.equals(""))
-            cities = data.get(country);
+    public void onTipoChange() {
+        if(tipo !=null && !tipo.equals(""))
+            marcas = data.get(tipo);
         else
-            cities = new HashMap<String, String>();
+            marcas = new HashMap<String, String>();
     }
      
     public void displayLocation() {
         FacesMessage msg;
-        if(city != null && country != null)
-            msg = new FacesMessage("Selected", city + " of " + country);
+        if(marca != null && tipo != null)
+            msg = new FacesMessage("Seleccion la marca", marca + " de tipo " + tipo + "con valor de $" + number4);
         else
-            msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Invalid", "City is not selected."); 
+            msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Invalid", "marca no seleccionada."); 
              
         FacesContext.getCurrentInstance().addMessage(null, msg);  
     }
+    
+      public int getNumber4() {
+        return number4;
+    }
+ 
+    public void setNumber4(int number4) {
+        this.number4 = number4;
+}
 }
