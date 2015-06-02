@@ -31,6 +31,7 @@
                             <p:menuitem value="Contactenos" outcome="/plantillas/plantillaContactenos.xhtml" icon="ui-icon-arrowthick-1-s" />
                             <p:menuitem value="Producto" outcome="/plantillas/plantillaProducto.xhtml" icon="ui-icon-wrench" />
                             <p:menuitem value="Venta" outcome="/plantillas/plantillaVenta.xhtml" icon="ui-icon-wrench" />
+                            <p:menuitem value="Cliente" outcome="/plantillas/plantillaCliente.xhtml" icon="ui-icon-wrench" />
                         </p:submenu>
                     </p:panelMenu>
                 </h:form>
@@ -57,32 +58,28 @@
                         <h:panelGrid columns="3" cellpadding="5">
                             
                             <p:outputLabel for="id_producto" value="id producto:" />
-                            <p:inputText id="id_producto" value="#{productoView.id_Producto}" required="true" label="id_producto">
+                            <p:inputText id="id_producto" value="#{productoView.producto.idProducto}" required="true" label="id_producto">
                                 <f:validateLength minimum="1" />
                             </p:inputText>
                             <p:message for="id_producto" display="icon" />
                             
                             <p:outputLabel for="nombre" value="Nombre:" />
-                            <p:inputText id="nombre" value="#{productoView.nombre}" required="true" label="nombre">
-                                <f:validateLength minimum="2" />
+                            <p:inputText id="nombre" value="#{productoView.producto.nombre}" required="true" label="nombre">
+                                <f:validateLength minimum="1" />
                             </p:inputText>
                             <p:message for="nombre" display="icon" />
                             
                             <p:outputLabel for="costo" value="costo:" />
-                            <p:inputText id="costo" value="#{productoView.costo}" required="true" label="costo">
-                                <f:validateLength minimum="2" />
-                            </p:inputText>
-                            <p:message for="costo" display="icon" />
-                            
-                            
+                            <p:spinner id="costo" value="#{productoView.producto.costo}" prefix="$" required="true" label="costo" min="0" >
+                                    <f:validateLength minimum="1" />
+                            </p:spinner>
                             
                             <p:outputLabel for="cantidad" value="cantidad:" />
-                            <p:spinner id="cantidad" value="#{productoView.number4}" prefix="$" required="true" label="cantidad" min="0" >
-                                    <f:validateLength minimum="3" />
-                            </p:spinner>
- 
+                            <p:inputText id="cantidad" value="#{productoView.producto.cantidad}" required="true" label="cantidad">
+                                <f:validateLength minimum="1" />
+                            </p:inputText>
                             <p:message for="cantidad" display="icon" />
-                            
+                                                        
                             <p:outputLabel for="id_marca" value="id_marca:" />
                             <p:inputText id="id_marca" value="#{productoView.id_marca}" required="true" label="id_marca">
                                 <f:validateLength minimum="1" />

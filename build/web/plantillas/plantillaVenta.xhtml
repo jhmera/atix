@@ -31,6 +31,7 @@
                             <p:menuitem value="Contactenos" outcome="/plantillas/plantillaContactenos.xhtml" icon="ui-icon-arrowthick-1-s" />
                             <p:menuitem value="Producto" outcome="/plantillas/plantillaProducto.xhtml" icon="ui-icon-wrench" />
                             <p:menuitem value="Venta" outcome="/plantillas/plantillaVenta.xhtml" icon="ui-icon-wrench" />
+                            <p:menuitem value="Cliente" outcome="/plantillas/plantillaCliente.xhtml" icon="ui-icon-wrench" />
                         </p:submenu>
                     </p:panelMenu>
                 </h:form>
@@ -50,35 +51,57 @@
 
             <ui:define name="content">
                 <h:form>
-    <p:growl id="msgs" showDetail="true" />
- 
-    <p:panel header="Elegir Producto" style="margin-bottom:10px;">
-        <h:panelGrid columns="2" cellpadding="5">
-            <p:outputLabel for="tipo" value="tipo: " />
-            <p:selectOneMenu id="tipo" value="#{dropdownView.tipo}" style="width:150px">
-                <p:ajax listener="#{dropdownView.onTipoChange()}" update="marca" />
-                <f:selectItem itemLabel="Selecione tipo" itemValue="" noSelectionOption="true" />
-                <f:selectItems value="#{dropdownView.tipos}" />
-            </p:selectOneMenu>
- 
-            <p:outputLabel for="marca" value="marca: " />
-            <p:selectOneMenu id="marca" value="#{dropdownView.marca}" style="width:150px">
-                <f:selectItem itemLabel="Selecione marca" itemValue="" noSelectionOption="true" />
-                <f:selectItems value="#{dropdownView.marcas}" />
-            </p:selectOneMenu>
-            
-            <p:outputLabel for="cantidad" value="cantidad:" />
-            <p:spinner id="cantidad" value="#{dropdownView.number4}" prefix="$" required="true" label="cantidad" min="0" readonly="true" >
-                                    <f:validateLength minimum="3" />
+                    <p:growl id="msgs" showDetail="true" />
+
+                    <p:panel header="Vender" style="margin-bottom:10px;">
+                        <h:panelGrid columns="2" cellpadding="5">
+
+                            <p:outputLabel for="id_venta" value="Id Venta:" />
+                            <p:inputText id="id_venta" value="#{clienteView.cliente.idCliente}" required="true" label="id_venta">
+                                <f:validateLength minimum="1" />
+                            </p:inputText>
+                            <p:message for="id_venta" display="icon" />
+                            
+                            <p:outputLabel for="fecha" value="fecha:" />
+                            <p:calendar id="fecha" value="#{ventaView.date3}" showOn="button" />
+                             
+                            <h:outputText value="Button:" />
+                            <h:outputText value="#{ventaView.date3}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+
+                            <p:outputLabel for="tipo" value="tipo: " />
+                            <p:selectOneMenu id="tipo" value="#{dropdownView.tipo}" style="width:150px">
+                                <p:ajax listener="#{dropdownView.onTipoChange()}" update="marca" />
+                                <f:selectItem itemLabel="Selecione tipo" itemValue="" noSelectionOption="true" />
+                                <f:selectItems value="#{dropdownView.tipos}" />
+                            </p:selectOneMenu>
+
+                            <p:outputLabel for="marca" value="marca: " />
+                            <p:selectOneMenu id="marca" value="#{dropdownView.marca}" style="width:150px">
+                                <f:selectItem itemLabel="Selecione marca" itemValue="" noSelectionOption="true" />
+                                <f:selectItems value="#{dropdownView.marcas}" />
+                            </p:selectOneMenu>
+
+                            <p:outputLabel for="cantidad" value="cantidad:" />
+                            <p:spinner id="cantidad" value="#{dropdownView.number4}" prefix="$" required="true" label="cantidad" min="0" readonly="true" >
+                                <f:validateLength minimum="3" />
                             </p:spinner>
-        </h:panelGrid>
- 
-        <p:separator />
- 
-        <p:commandButton value="Comprar" update="msgs" actionListener="#{dropdownView.displayLocation}" icon="ui-icon-check" />
-    </p:panel>
-</h:form>
-                
+
+
+                            <p:outputLabel for="identificacion" value="Identificacion:" />
+                            <p:inputText id="identificacion" value="#{clienteView.cliente.identificacion}" required="true" label="identificacion">
+                                <f:validateLength minimum="1" />
+                            </p:inputText>
+                            <p:message for="identificacion" display="icon" />
+                        </h:panelGrid>
+
+                        <p:separator />
+
+                        <p:commandButton value="Comprar" update="msgs" actionListener="#{dropdownView.displayLocation}" icon="ui-icon-check" />
+                    </p:panel>
+                </h:form>
+
             </ui:define>
 
             <ui:define name="bottom">

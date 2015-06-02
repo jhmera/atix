@@ -5,17 +5,47 @@
  */
 package primeFacesJava;
 
+import bean.ProductoFacade;
+import entidades.Producto;
+import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 /**
  *
  * @author ACER
  */
-@ManagedBean
+@ManagedBean (name="productoView")
+@ViewScoped
 public class ProductoView {
 
+    
+    @EJB
+    private bean.ProductoFacade ejbFacade;
+    
+    private Producto producto;
+
+    public ProductoFacade getEjbFacade() {
+        return ejbFacade;
+    }
+
+    public void setEjbFacade(ProductoFacade ejbFacade) {
+        this.ejbFacade = ejbFacade;
+    }
+
+    public Producto getProducto() {
+        return producto;
+    }
+
+    public void setProducto(Producto producto) {
+        this.producto = producto;
+    }
+    
+    public ProductoView ( ) {
+        producto =  new Producto();
+    }
     
     private int id_producto;
     private String nombre;
@@ -65,6 +95,7 @@ public class ProductoView {
     }
  
     public void save() {
+        getEjbFacade().create(producto);
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage("tienes" +cantidad + " de " + nombre + " con valor $"+ costo+" y marca "+ id_marca));
     }
