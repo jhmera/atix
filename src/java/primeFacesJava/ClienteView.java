@@ -96,7 +96,7 @@ public class ClienteView {
     public void save() {
         getEjbFacade().create(cliente);
         FacesContext.getCurrentInstance().addMessage(null,
-                new FacesMessage("El cliente agregado es" + nombres +" "+ apellidos + " con identificacion"+ identificacion +" y edad "+ edad));
+                new FacesMessage("El cliente agregado es " + cliente.getNombres() +" "+ cliente.getApellidos() + " con identificacion "+ cliente.getIdentificacion() +" y edad "+ cliente.getEdad()));
     }
     
 }
