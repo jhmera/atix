@@ -21,7 +21,8 @@
                     <h:inputText id="nombre" value="#{marcaController.selected.nombre}" title="#{bundle.CreateMarcaTitle_nombre}" required="true" requiredMessage="#{bundle.CreateMarcaRequiredMessage_nombre}"/>
                     <h:outputLabel value="#{bundle.CreateMarcaLabel_idTipo}" for="idTipo" />
                     <h:selectOneMenu id="idTipo" value="#{marcaController.selected.idTipo}" title="#{bundle.CreateMarcaTitle_idTipo}" >
-                        <f:selectItems value="#{tipoController.itemsAvailableSelectOne}"/>
+                        <f:selectItems var="tipo" value="#{tipoController.itemsAvailableSelectOne}"
+                                       itemLabel="A"/>
                     </h:selectOneMenu>
                 </h:panelGrid>
                 <br />

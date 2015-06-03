@@ -5,15 +5,19 @@
  */
 package primeFacesJava;
 
+import bean.ProductoFacade;
 import bean.VentaFacade;
+import entidades.Producto;
 import entidades.Venta;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.model.DataModel;
 
 /**
  *
@@ -25,14 +29,21 @@ public class VentaView {
 
     @EJB
     private bean.VentaFacade ejbFacade;
+    private bean.ProductoFacade productoFacade;
 
     private int id_venta;
     private Date fecha;
     private int cantidad;
     private int id_producto;
     private int id_cliente;
-    private Date date3;
-
+    
+    private DataModel productos = null;
+    
+    private List<Producto> lstProductos;
+    
+    public VentaView ( ) {
+        iniciarLista();
+    }
     
     private Venta venta;
 
@@ -42,6 +53,26 @@ public class VentaView {
 
     public void setEjbFacade(VentaFacade ejbFacade) {
         this.ejbFacade = ejbFacade;
+    }
+
+    public ProductoFacade getProductoFacade() {
+        return productoFacade;
+    }
+
+    public void setProductoFacade(ProductoFacade productoFacade) {
+        this.productoFacade = productoFacade;
+    }
+
+    public List<Producto> getLstProductos() {
+        return lstProductos;
+    }
+
+    public void setLstProductos(List<Producto> lstProductos) {
+        this.lstProductos = lstProductos;
+    }
+    
+    private void iniciarLista() {
+        lstProductos = getProductoFacade().findAll();
     }
 
     public int getId_venta() {
@@ -92,18 +123,10 @@ public class VentaView {
         this.venta = venta;
     }
     
-    public Date getDate3() {
-        return date3;
-    }
-
-    public void setDate3(Date date3) {
-        this.date3 = date3;
-    }
-
     public void save() {
         getEjbFacade().create(venta);
         FacesContext.getCurrentInstance().addMessage(null,
-                new FacesMessage("La fecha de venta es" + fecha + "Con una cantidad de" + cantidad + "del producto" + id_producto + "al cliente con id" + id_cliente));
+                new FacesMessage("La fecha de venta es " + venta.getFecha()+ " Con una cantidad de " + venta.getCantidad() + " del producto " + venta.getIdProducto().getNombre() + " al cliente con id " + venta.getIdCliente().getNombres()));
     }
 
 }

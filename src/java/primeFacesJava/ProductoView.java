@@ -97,7 +97,7 @@ public class ProductoView {
     public void save() {
         getEjbFacade().create(producto);
         FacesContext.getCurrentInstance().addMessage(null,
-                new FacesMessage("tienes" +cantidad + " de " + nombre + " con valor $"+ costo+" y marca "+ id_marca));
+                new FacesMessage("tienes" + producto.getCantidad() + " unidades de " + producto.getNombre() + " con valor $"+ producto.getCosto()+" y marca "+ producto.getIdMarca()));
     }
     
      public int getNumber4() {

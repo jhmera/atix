@@ -82,6 +82,7 @@
                             <p:spinner id="costo" value="#{productoView.producto.costo}" prefix="$" required="true" label="costo" min="0" >
                                     <f:validateLength minimum="1" />
                             </p:spinner>
+                            <p:message for="costo" display="icon" />
                             
                             <p:outputLabel for="cantidad" value="cantidad:" />
                             <p:inputText id="cantidad" value="#{productoView.producto.cantidad}" required="true" label="cantidad">
@@ -90,7 +91,7 @@
                             <p:message for="cantidad" display="icon" />
                                                         
                             <p:outputLabel for="id_marca" value="id_marca:" />
-                            <p:inputText id="id_marca" value="#{productoView.id_marca}" required="true" label="id_marca">
+                            <p:inputText id="id_marca" value="#{productoView.producto.idMarca}" required="true" label="id_marca">
                                 <f:validateLength minimum="1" />
                             </p:inputText>
                             <p:message for="id_marca" display="icon" />

@@ -63,46 +63,39 @@
                     <p:growl id="msgs" showDetail="true" />
 
                     <p:panel header="Vender" style="margin-bottom:10px;">
-                        <h:panelGrid columns="2" cellpadding="5">
+                        <h:panelGrid columns="3" cellpadding="5">
 
                             <p:outputLabel for="id_venta" value="Id Venta:" />
-                            <p:inputText id="id_venta" value="#{clienteView.cliente.idCliente}" required="true" label="id_venta">
+                            <p:inputText id="id_venta" value="#{ventaView.venta.idVenta}" required="true" label="id_venta">
                                 <f:validateLength minimum="1" />
                             </p:inputText>
                             <p:message for="id_venta" display="icon" />
                             
                             <p:outputLabel for="fecha" value="fecha:" />
-                            <p:calendar id="fecha" value="#{ventaView.date3}" showOn="button" />
-                             
-                            <h:outputText value="Button:" />
-                            <h:outputText value="#{ventaView.date3}">
-                                <f:convertDateTime pattern="MM/dd/yyyy" />
-                            </h:outputText>
-
-                            <p:outputLabel for="tipo" value="tipo: " />
-                            <p:selectOneMenu id="tipo" value="#{dropdownView.tipo}" style="width:150px">
-                                <p:ajax listener="#{dropdownView.onTipoChange()}" update="marca" />
-                                <f:selectItem itemLabel="Selecione tipo" itemValue="" noSelectionOption="true" />
-                                <f:selectItems value="#{dropdownView.tipos}" />
-                            </p:selectOneMenu>
-
-                            <p:outputLabel for="marca" value="marca: " />
-                            <p:selectOneMenu id="marca" value="#{dropdownView.marca}" style="width:150px">
-                                <f:selectItem itemLabel="Selecione marca" itemValue="" noSelectionOption="true" />
-                                <f:selectItems value="#{dropdownView.marcas}" />
-                            </p:selectOneMenu>
-
+                            <p:calendar id="fecha" value="#{ventaView.venta.fecha}" pattern="MM/dd/yyyy" showOn="button" />
+                            <p:message for="fecha" display="icon" />
+                            
+                            
+                            
                             <p:outputLabel for="cantidad" value="cantidad:" />
-                            <p:spinner id="cantidad" value="#{dropdownView.number4}" prefix="$" required="true" label="cantidad" min="0" readonly="true" >
+                            <p:spinner id="cantidad" value="#{ventaView.venta.cantidad}" prefix="$" required="true" label="cantidad" min="0" readonly="false" >
                                 <f:validateLength minimum="3" />
                             </p:spinner>
+                            <p:message for="cantidad" display="icon" />
 
 
                             <p:outputLabel for="identificacion" value="Identificacion:" />
-                            <p:inputText id="identificacion" value="#{clienteView.cliente.identificacion}" required="true" label="identificacion">
+                            <p:inputText id="identificacion" value="#{ventaView.venta.idCliente.identificacion}" required="true" label="identificacion">
                                 <f:validateLength minimum="1" />
                             </p:inputText>
                             <p:message for="identificacion" display="icon" />
+                            
+                            <p:outputLabel for="producto" value="tipo: " />
+                            <h:selectOneMenu id="idProducto" value="#{ventaController.selected.idProducto}" title="#{bundle.CreateVentaTitle_idProducto}" >
+                                <f:selectItems value="#{productoController.itemsAvailableSelectOne}"/>
+                            </h:selectOneMenu>
+                            <p:message for="producto" display="icon" />
+                            
                         </h:panelGrid>
 
                         <p:separator />
