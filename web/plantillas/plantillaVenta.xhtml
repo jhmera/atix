@@ -78,20 +78,19 @@
                             
                             
                             <p:outputLabel for="cantidad" value="cantidad:" />
-                            <p:spinner id="cantidad" value="#{ventaView.venta.cantidad}" prefix="$" required="true" label="cantidad" min="0" readonly="false" >
-                                <f:validateLength minimum="3" />
+                            <p:spinner id="cantidad" value="#{ventaView.venta.cantidad}" required="true" label="cantidad" min="0" readonly="false" >
+                                <f:validateLength minimum="1" />
                             </p:spinner>
                             <p:message for="cantidad" display="icon" />
-
-
-                            <p:outputLabel for="identificacion" value="Identificacion:" />
-                            <p:inputText id="identificacion" value="#{ventaView.venta.idCliente.identificacion}" required="true" label="identificacion">
-                                <f:validateLength minimum="1" />
-                            </p:inputText>
-                            <p:message for="identificacion" display="icon" />
                             
-                            <p:outputLabel for="producto" value="tipo: " />
-                            <h:selectOneMenu id="idProducto" value="#{ventaController.selected.idProducto}" title="#{bundle.CreateVentaTitle_idProducto}" >
+                            <p:outputLabel for="cliente" value="cliente " />
+                            <h:selectOneMenu id="cliente" value="#{ventaView.venta.idCliente}" title="#{bundle.CreateVentaTitle_idProducto}" >
+                                <f:selectItems value="#{clienteController.itemsAvailableSelectOne}"/>
+                            </h:selectOneMenu>
+                            <p:message for="cliente" display="icon" />
+                            
+                            <p:outputLabel for="producto" value="producto " />
+                            <h:selectOneMenu id="producto" value="#{ventaView.venta.idProducto}" title="#{bundle.CreateVentaTitle_idProducto}" >
                                 <f:selectItems value="#{productoController.itemsAvailableSelectOne}"/>
                             </h:selectOneMenu>
                             <p:message for="producto" display="icon" />
@@ -100,7 +99,7 @@
 
                         <p:separator />
 
-                        <p:commandButton value="Comprar" update="msgs" actionListener="#{dropdownView.displayLocation}" icon="ui-icon-check" />
+                        <p:commandButton value="Comprar" update="msgs" actionListener="#{ventaView.save()}" icon="ui-icon-check" />
                     </p:panel>
                 </h:form>
 

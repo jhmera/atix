@@ -29,7 +29,7 @@ public class MarkersView implements Serializable {
         //Shared coordinates
         LatLng coord1 = new LatLng(1.205999,-77.260836);          
         //Basic marker
-        simpleModel.addOverlay(new Marker(coord1, "Konyaalti"));
+        simpleModel.addOverlay(new Marker(coord1, "UNICO PASTO"));
     }
   
     public MapModel getSimpleModel() {

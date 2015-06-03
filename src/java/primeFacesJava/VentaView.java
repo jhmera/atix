@@ -29,6 +29,7 @@ public class VentaView {
 
     @EJB
     private bean.VentaFacade ejbFacade;
+    @EJB
     private bean.ProductoFacade productoFacade;
 
     private int id_venta;
@@ -43,6 +44,7 @@ public class VentaView {
     
     public VentaView ( ) {
         iniciarLista();
+        venta = new Venta();
     }
     
     private Venta venta;
@@ -72,7 +74,7 @@ public class VentaView {
     }
     
     private void iniciarLista() {
-        lstProductos = getProductoFacade().findAll();
+        //lstProductos = getProductoFacade().findAll();
     }
 
     public int getId_venta() {
@@ -124,9 +126,21 @@ public class VentaView {
     }
     
     public void save() {
-        getEjbFacade().create(venta);
-        FacesContext.getCurrentInstance().addMessage(null,
-                new FacesMessage("La fecha de venta es " + venta.getFecha()+ " Con una cantidad de " + venta.getCantidad() + " del producto " + venta.getIdProducto().getNombre() + " al cliente con id " + venta.getIdCliente().getNombres()));
+        int cantProducto = venta.getIdProducto().getCantidad();
+        int cantSolicitada = Integer.parseInt(venta.getCantidad()+"");
+        if (cantProducto > cantSolicitada) {
+            getEjbFacade().create(venta);
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage("La fecha de venta es " + venta.getFecha()+ " Con una cantidad de " + venta.getCantidad() + " del producto " + venta.getIdProducto().getNombre() + " al cliente con id " + venta.getIdCliente().getNombres()));
+            
+            cantProducto -= cantSolicitada;
+            Producto producto = venta.getIdProducto();
+            producto.setCantidad(cantProducto);
+            getProductoFacade().edit(producto);
+        } else {
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage("La cantidad no se encuetra disponible"));
+        }
     }
 
 }
