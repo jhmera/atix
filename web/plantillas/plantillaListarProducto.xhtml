@@ -1,0 +1,171 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <body>
+
+        <ui:composition template="./plantillaAtix.xhtml">
+
+            <ui:define name="top">
+                <div id="imgHeader" align="center">
+                    <h4 align="center">BIENVENIDO A TU CATALOGO U.S. POLO ASSN. UNICO PASTO (LOCAL 2)</h4>
+                    <img src="../resources/imagenes/atixStore.jpg" />
+                    <h:form>
+                        <h3 style="margin-top:0"></h3>
+                        <p:clock />
+                    </h:form>
+                </div>
+            </ui:define>
+
+            <ui:define name="left">
+                <h:form>
+                    <p:growl autoUpdate="true"/>
+                    <p:panelMenu style="width:150px">
+                        <p:submenu label="CONTENIDO" icon="ui-icon-heart">
+                            <p:menuitem value="Home" outcome="/plantillas/plantillaIndex.xhtml" icon="ui-icon-home" />
+                            <p:menuitem value="Mision - Vision" outcome="/plantillas/plantillaMVAtix.xhtml" icon="ui-icon-document" />
+                            <p:menuitem value="Contactenos" outcome="/plantillas/plantillaContactenos.xhtml" icon="ui-icon-arrowthick-1-s" />
+                            
+                            <p:menuitem value="Venta" outcome="/plantillas/plantillaVenta.xhtml" icon="ui-icon-wrench" />
+                            
+                            <p:submenu label="Ingresos" icon="ui-icon-heart">
+                                <p:menuitem value="Cliente" outcome="/plantillas/plantillaCliente.xhtml" icon="ui-icon-wrench" />
+                                <p:submenu label="Ingresos" icon="ui-icon-heart">
+                                    <p:menuitem value="Tipo" outcome="/plantillas/plantillaTipo.xhtml" icon="ui-icon-wrench" />
+                                    <p:menuitem value="Marca" outcome="/plantillas/plantillaMarca.xhtml" icon="ui-icon-wrench" />
+                                    <p:menuitem value="Producto" outcome="/plantillas/plantillaProducto.xhtml" icon="ui-icon-wrench" />
+                                    
+                                    
+                                </p:submenu>
+                                 <p:submenu label="Modificar" icon="ui-icon-heart">
+                                   
+                                    <p:menuitem value="Listar Cliente" outcome="/plantillas/plantillaListarCliente.xhtml" icon="ui-icon-wrench" />
+                                    <p:menuitem value="Listar Marca" outcome="/plantillas/plantillaListarMarcar.xhtml" icon="ui-icon-wrench" />
+                                    <p:menuitem value="Listar Producto" outcome="/plantillas/plantillaListarProducto.xhtml" icon="ui-icon-wrench" />
+                                    <p:menuitem value="Listar Tipo" outcome="/plantillas/plantillaListarTipo.xhtml" icon="ui-icon-wrench" />
+                                </p:submenu>
+                                 
+                            </p:submenu>
+                        </p:submenu>
+                    </p:panelMenu>
+                </h:form>
+            </ui:define>
+
+            <ui:define name="right">
+                <h:form>
+                    <p:growl autoUpdate="true"/>
+                    <p:panelMenu style="width:150px">
+                        <p:submenu label="REDES SOCIALES" icon="ui-icon-heart">
+                            <p:menuitem value="Facebook" url="https://www.facebook.com/pages/Atix-Store-Unico-Pasto/1105389496142525" icon="ui-icon-home" />
+                            <p:menuitem value="Twitter" url="https://twitter.com/USPoloPasto?lang=es" icon="ui-icon-home" />
+                        </p:submenu>
+                    </p:panelMenu>
+                </h:form>
+            </ui:define>
+
+            <ui:define name="content">
+                <h:form>
+                    <p:panel id="panel" header="LISTAR PRODUCTO ">
+
+                        <h:panelGroup rendered="#{productoController.items.rowCount > 0}">
+                    <h:outputText value="#{productoController.pagination.pageFirstItem + 1}..#{productoController.pagination.pageLastItem + 1}/#{productoController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{productoController.previous}" value="#{bundle.Previous} #{productoController.pagination.pageSize}" rendered="#{productoController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{productoController.next}" value="#{bundle.Next} #{productoController.pagination.pageSize}" rendered="#{productoController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{productoController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProductoTitle_idProducto}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idProducto}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProductoTitle_nombre}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nombre}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProductoTitle_costo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.costo}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProductoTitle_cantidad}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.cantidad}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProductoTitle_idMarca}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idMarca}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <p:commandButton value="Editar" action="#{productoView.dlgEditar(item)}" process="@this" update="@([id$=dlgEditar])"/>
+                            <p:commandButton value="Eliminar" action="#{productoView.dlgConfirmar(item)}" process="@this" update="@([id$=dlgConfirmar])" />
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                    </p:panel>
+                </h:form>
+                
+                <p:dialog widgetVar="dlgEditarWV" id="dlgEditar"
+                          modal="true" resizable="false"
+                          header="Modificar Producto">
+                    <h:form>
+                    <h:panelGrid columns="2">
+                        <h:outputLabel value="nombre" for="nombre" />
+                        <h:inputText id="nombre" value="#{productoView.producto.nombre}" title="#{bundle.CreateProductoTitle_nombre}" required="true" requiredMessage="#{bundle.CreateProductoRequiredMessage_nombre}"/>
+                        <h:outputLabel value="costo" for="costo" />
+                        <h:inputText id="costo" value="#{productoView.producto.costo}" title="#{bundle.CreateProductoTitle_costo}" required="true" requiredMessage="#{bundle.CreateProductoRequiredMessage_costo}"/>
+                        <h:outputLabel value="cantidad" for="cantidad" />
+                        <h:inputText id="cantidad" value="#{productoView.producto.cantidad}" title="#{bundle.CreateProductoTitle_cantidad}" required="true" requiredMessage="#{bundle.CreateProductoRequiredMessage_cantidad}"/>
+                        <h:outputLabel value="marca" for="idMarca" />
+                        <h:selectOneMenu id="idMarca" value="#{productoView.producto.idMarca}" title="#{bundle.CreateProductoTitle_idMarca}" required="true" requiredMessage="#{bundle.CreateProductoRequiredMessage_idMarca}">
+                            <f:selectItems value="#{marcaController.itemsAvailableSelectOne}"/>
+                        </h:selectOneMenu>
+                        <p:commandButton action="#{productoView.actualizar()}" process="@form"
+                                         value="Aceptar"
+                                         update="@([id$=dlgEditar], [id$=panel])"
+                                         onsuccess="PF('dlgEditarWV').hide();"/>
+                    </h:panelGrid>
+                    </h:form>
+                    
+                </p:dialog>
+                
+                <p:dialog widgetVar="dlgConfirmarWV" id="dlgConfirmar"
+                          modal="true" resizable="false"
+                          header="Eliminar Producto">
+                    <h:form>
+                    <h:panelGrid columns="2">
+                        <h:outputLabel value="¿Desea eliminar el producto?" />
+                        
+                        <p:commandButton action="#{productoView.eliminar()}" process="@form"
+                                         value="SI"
+                                         update="@([id$=dlgConfirmar], [id$=panel])"
+                                         onsuccess="PF('dlgConfirmarWV').hide();"/>
+                    </h:panelGrid>
+                    </h:form>
+                    
+                </p:dialog>
+                
+            </ui:define>
+
+            <ui:define name="bottom">
+                bottom
+            </ui:define>
+
+        </ui:composition>
+
+
+    </body>
+</html>

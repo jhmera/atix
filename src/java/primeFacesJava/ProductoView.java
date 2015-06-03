@@ -12,6 +12,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import org.primefaces.context.RequestContext;
 
 /**
  *
@@ -93,12 +94,6 @@ public class ProductoView {
     public void setId_marca(int id_marca) {
         this.id_marca = id_marca;
     }
- 
-    public void save() {
-        getEjbFacade().create(producto);
-        FacesContext.getCurrentInstance().addMessage(null,
-                new FacesMessage("tienes" + producto.getCantidad() + " unidades de " + producto.getNombre() + " con valor $"+ producto.getCosto()+" y marca "+ producto.getIdMarca()));
-    }
     
      public int getNumber4() {
         return number4;
@@ -106,6 +101,38 @@ public class ProductoView {
  
     public void setNumber4(int number4) {
         this.number4 = number4;
+    }
+    
+    public void dlgEditar(Producto producto){
+        setProducto(producto);
+        RequestContext.getCurrentInstance().execute("PF('dlgEditarWV').show();");
+    }
+    
+    public void dlgConfirmar(Producto producto){
+        setProducto(producto);
+        RequestContext.getCurrentInstance().execute("PF('dlgConfirmarWV').show();");
+    }
+ 
+    public void save() {
+        getEjbFacade().create(producto);
+        FacesContext.getCurrentInstance().addMessage(null,
+                new FacesMessage("tienes" + producto.getCantidad() + " unidades de " + producto.getNombre() + " con valor $"+ producto.getCosto()+" y marca "+ producto.getIdMarca()));
+    }
+    
+    public void actualizar() {
+        getEjbFacade().edit(producto);
+        FacesContext.getCurrentInstance().addMessage(null,
+                new FacesMessage("Producto modificado"));
+        producto = new Producto();
+        RequestContext.getCurrentInstance().execute("PF('dlgEditarWV').hide();");
+    }
+    
+    public void eliminar() {
+        getEjbFacade().remove(producto);
+        FacesContext.getCurrentInstance().addMessage(null,
+                new FacesMessage("Producto eliminado"));
+        producto = new Producto();
+        RequestContext.getCurrentInstance().execute("PF('dlgConfirmarWV').hide();");
     }
     
 }

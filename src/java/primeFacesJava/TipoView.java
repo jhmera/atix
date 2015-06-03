@@ -62,6 +62,16 @@ public class TipoView {
         this.tipo = tipo;
     }
     
+    public void dlgEditar(Tipo tipo){
+        setTipo(tipo);
+        RequestContext.getCurrentInstance().execute("PF('dlgEditarWV').show();");
+    }
+    
+    public void dlgConfirmar(Tipo tipo){
+        setTipo(tipo);
+        RequestContext.getCurrentInstance().execute("PF('dlgConfirmarWV').show();");
+    }
+    
     public void save() {
         getEjbFacade().create(tipo);
         FacesContext.getCurrentInstance().addMessage(null,
@@ -72,6 +82,22 @@ public class TipoView {
     public void abrirEditar(Tipo tipo) {
         this.tipo = tipo;
         RequestContext.getCurrentInstance().execute("PF('dlgEditarWV').show();");
+    }
+    
+    public void actualizar() {
+        getEjbFacade().edit(tipo);
+        FacesContext.getCurrentInstance().addMessage(null,
+                new FacesMessage("Tipo modificado"));
+        tipo = new Tipo();
+        RequestContext.getCurrentInstance().execute("PF('dlgEditarWV').hide();");
+    }
+    
+    public void eliminar() {
+        getEjbFacade().remove(tipo);
+        FacesContext.getCurrentInstance().addMessage(null,
+                new FacesMessage("Tipo eliminado"));
+        tipo = new Tipo();
+        RequestContext.getCurrentInstance().execute("PF('dlgConfirmarWV').hide();");
     }
     
 }

@@ -12,6 +12,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import org.primefaces.context.RequestContext;
 
 /**
  *
@@ -92,11 +93,37 @@ public class ClienteView {
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
+    
+    public void dlgEditar(Cliente cliente){
+        setCliente(cliente);
+        RequestContext.getCurrentInstance().execute("PF('dlgEditarWV').show();");
+    }
+    
+    public void dlgConfirmar(Cliente cliente){
+        setCliente(cliente);
+        RequestContext.getCurrentInstance().execute("PF('dlgConfirmarWV').show();");
+    }
         
     public void save() {
         getEjbFacade().create(cliente);
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage("El cliente agregado es " + cliente.getNombres() +" "+ cliente.getApellidos() + " con identificacion "+ cliente.getIdentificacion() +" y edad "+ cliente.getEdad()));
+    }
+    
+    public void actualizar() {
+        getEjbFacade().edit(cliente);
+        FacesContext.getCurrentInstance().addMessage(null,
+                new FacesMessage("Cliente modificado"));
+        cliente = new Cliente();
+        RequestContext.getCurrentInstance().execute("PF('dlgEditarWV').hide();");
+    }
+    
+    public void eliminar() {
+        getEjbFacade().remove(cliente);
+        FacesContext.getCurrentInstance().addMessage(null,
+                new FacesMessage("Cliente eliminado"));
+        cliente = new Cliente();
+        RequestContext.getCurrentInstance().execute("PF('dlgConfirmarWV').hide();");
     }
     
 }

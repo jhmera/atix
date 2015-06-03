@@ -8,11 +8,13 @@ package primeFacesJava;
 
 import bean.MarcaFacade;
 import entidades.Marca;
+import entidades.Producto;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import org.primefaces.context.RequestContext;
 
 
 @ManagedBean (name="marcaView")
@@ -72,10 +74,36 @@ public class MarcaView {
         this.marca = marca;
     }
     
+    public void dlgEditar(Marca marca){
+        setMarca(marca);
+        RequestContext.getCurrentInstance().execute("PF('dlgEditarWV').show();");
+    }
+    
+    public void dlgConfirmar(Marca marca){
+        setMarca(marca);
+        RequestContext.getCurrentInstance().execute("PF('dlgConfirmarWV').show();");
+    }
+    
     public void save() {
         getEjbFacade().create(marca);
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage("La marca agregada es: " + marca.getNombre() + " con id "+ marca.getIdMarca() + " perteneciente al tipo " + marca.getIdTipo()));
         marca=new Marca();
+    }
+    
+    public void actualizar() {
+        getEjbFacade().edit(marca);
+        FacesContext.getCurrentInstance().addMessage(null,
+                new FacesMessage("Marca modificada"));
+        marca = new Marca();
+        RequestContext.getCurrentInstance().execute("PF('dlgEditarWV').hide();");
+    }
+    
+    public void eliminar() {
+        getEjbFacade().remove(marca);
+        FacesContext.getCurrentInstance().addMessage(null,
+                new FacesMessage("Marca eliminada"));
+        marca = new Marca();
+        RequestContext.getCurrentInstance().execute("PF('dlgConfirmarWV').hide();");
     }
 }
