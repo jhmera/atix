@@ -12,6 +12,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import org.primefaces.context.RequestContext;
 
 @ManagedBean (name="tipoView")
 @ViewScoped
@@ -67,4 +68,10 @@ public class TipoView {
                 new FacesMessage("El Tipo agregado es: " + tipo.getNombre() + " con id "+ tipo.getIdTipo()));
         tipo=new Tipo();
     }
+    
+    public void abrirEditar(Tipo tipo) {
+        this.tipo = tipo;
+        RequestContext.getCurrentInstance().execute("PF('dlgEditarWV').show();");
+    }
+    
 }
